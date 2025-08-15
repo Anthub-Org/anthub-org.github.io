@@ -35,5 +35,5 @@ COPY --from=build /app/public ./public
 COPY --from=build /app/package.json ./package.json
 COPY --from=build /app/node_modules ./node_modules
 
-EXPOSE 3003
+EXPOSE 3000
 CMD ["npm", "run", "start", "--", "-p", "3003", "-H", "0.0.0.0"]
