@@ -1,5 +1,5 @@
-// app/privacy-policy/page.tsx
 import type { Metadata } from "next";
+import PrintButton from "../../components/ui/print-button";
 
 export const metadata: Metadata = {
   title: "Privacy Policy | Anthub",
@@ -7,21 +7,18 @@ export const metadata: Metadata = {
 };
 
 export default function PrivacyPolicyPage() {
+  const today = new Date().toLocaleDateString();
+
   return (
     <main className="container mx-auto max-w-3xl px-4 py-12">
       <header className="flex items-center justify-between gap-3 mb-6">
         <div>
           <h1 className="text-3xl font-bold">Privacy Policy</h1>
           <p className="text-sm text-muted-foreground">
-            Effective: <strong>15 August, 2025</strong> • Last Updated: <strong>15 August, 2025</strong>
+            Effective: <strong>15 August, 2025</strong> • Last Updated: <strong>{today}</strong>
           </p>
         </div>
-        <button
-          onClick={() => window.print()}
-          className="border rounded-lg px-3 py-2 text-sm"
-        >
-          Print
-        </button>
+        <PrintButton />
       </header>
 
       <section className="border rounded-2xl p-5 mb-6">
@@ -29,8 +26,9 @@ export default function PrivacyPolicyPage() {
           TL;DR
         </div>
         <p className="mt-3">
-          We only collect what we need to connect car owners with car shops: your name, address, mobile number, and email.
-          We <strong>do not sell</strong> your data. We use it only to operate and improve our service.
+          We only collect what we need to connect car owners with car shops: your name, address, mobile
+          number, and email. We <strong>do not sell</strong> your data. We use it only to operate and
+          improve our service.
         </p>
       </section>
 
@@ -50,7 +48,8 @@ export default function PrivacyPolicyPage() {
         <section id="who">
           <h2>1. Who We Are</h2>
           <p>
-            This policy applies to <strong>Anthub</strong> (“we,” “our,” or “us”), which connects car owners with car shops in Canada.
+            This policy applies to <strong>Anthub</strong> (“we,” “our,” or “us”), which connects car owners
+            with car shops in Canada.
           </p>
         </section>
 

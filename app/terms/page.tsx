@@ -1,5 +1,5 @@
-// app/terms/page.tsx
 import type { Metadata } from "next";
+import PrintButton from "../../components/ui/print-button";
 
 export const metadata: Metadata = {
   title: "Terms & Conditions | Anthub",
@@ -7,25 +7,22 @@ export const metadata: Metadata = {
 };
 
 export default function TermsPage() {
+  const today = new Date().toLocaleDateString();
+
   return (
     <main className="container mx-auto max-w-3xl px-4 py-12">
       <header className="flex items-center justify-between gap-3 mb-6">
         <div>
           <h1 className="text-3xl font-bold">Terms of Service</h1>
           <p className="text-sm text-muted-foreground">
-            Effective: <strong>15 August, 2025</strong> • Last Updated: <strong>15 August, 2025</strong>
+            Effective: <strong>15 August, 2025</strong> • Last Updated: <strong>{today}</strong>
           </p>
         </div>
-        <button
-          onClick={() => window.print()}
-          className="border rounded-lg px-3 py-2 text-sm"
-        >
-          Print
-        </button>
+        <PrintButton />
       </header>
 
       <section className="border rounded-2xl p-5 mb-6">
-        <div className="inline-flex items-center gap-2 bg-yellow-400 text-black rounded-full px-3 py-1 text-xs">
+        <div className="inline-flex items-center gap-2 rounded-full px-3 py-1 text-xs border">
           TL;DR
         </div>
         <p className="mt-3">
@@ -51,9 +48,8 @@ export default function TermsPage() {
         <section id="accept">
           <h2>1. Acceptance of Terms</h2>
           <p>
-            By creating an account or using <strong>Anthub</strong> (“the Service”),
-            you agree to these Terms of Service and our Privacy Policy.
-            If you do not agree, you may not use the Service.
+            By creating an account or using <strong>Anthub</strong> (“the Service”), you agree to these Terms of
+            Service and our Privacy Policy. If you do not agree, you may not use the Service.
           </p>
         </section>
 
@@ -108,17 +104,16 @@ export default function TermsPage() {
         <section id="ip">
           <h2>7. Intellectual Property</h2>
           <p>
-            All content and software in the Service (except user-generated content)
-            belong to <strong>Anthub</strong> and are protected by copyright and other intellectual property laws.
+            All content and software in the Service (except user-generated content) belong to <strong>Anthub</strong>
+            and are protected by copyright and other intellectual property laws.
           </p>
         </section>
 
         <section id="changes">
           <h2>8. Changes to These Terms</h2>
           <p>
-            We may update these Terms from time to time. If we make significant changes,
-            we will notify you before they take effect. Continued use of the Service
-            after changes means you accept the new Terms.
+            We may update these Terms from time to time. If we make significant changes, we will notify you before they
+            take effect. Continued use of the Service after changes means you accept the new Terms.
           </p>
         </section>
 
