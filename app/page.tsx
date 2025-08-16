@@ -25,6 +25,7 @@ import {
   Menu,
   X,
 } from "lucide-react"
+import Link from "next/link"
 
 export default function LandingPage() {
   const [activeTab, setActiveTab] = useState("car-owners")
@@ -875,10 +876,17 @@ export default function LandingPage() {
             <div>
               <h3 className="font-bold mb-6 text-xl">Contact</h3>
               <ul className="space-y-3 text-primary-foreground/80 text-lg">
-                <li>support@anthub.com</li>
+                <li>support@anthub.ca</li>
                 <li>1-800-ANTHUB</li>
                 <li>Help Center</li>
-                <li>Privacy Policy</li>
+                <li><Link href="/privacy-policy" className="underline hover:no-underline">
+                  Privacy Policy
+                  </Link></li>
+                    <li>
+                    <Link href="/terms" className="underline hover:no-underline">
+                  Terms &amp; Conditions
+                    </Link>
+                    </li>
               </ul>
             </div>
           </div>
