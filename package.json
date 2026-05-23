@@ -5,7 +5,9 @@
   "scripts": {
     "build": "next build",
     "dev": "next dev",
-    "start": "serve out -l 3003"
+    "start": "serve out -l 3003",
+    "publish:site": "powershell -NoProfile -ExecutionPolicy Bypass -File scripts/publish-site.ps1",
+    "publish:site:sh": "bash scripts/publish-site.sh"
   },
   "dependencies": {
     "@hookform/resolvers": "^5.4.0",
