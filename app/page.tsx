@@ -4,6 +4,7 @@ import { useState } from "react"
 import Link from "next/link"
 import type { LucideIcon } from "lucide-react"
 import {
+  Apple,
   ArrowRight,
   BadgeCheck,
   BellRing,
@@ -14,6 +15,7 @@ import {
   ChevronRight,
   ClipboardCheck,
   Clock3,
+  Download,
   FileText,
   Handshake,
   History,
@@ -49,12 +51,31 @@ type StepItem = {
   description: string
 }
 
+type AppDownload = FeatureItem & {
+  androidUrl: string
+}
+
 const navItems: NavItem[] = [
   { label: "Platform", target: "platform" },
   { label: "Shops", target: "shops" },
   { label: "Drivers", target: "drivers" },
   { label: "Workflow", target: "workflow" },
   { label: "Apps", target: "apps" },
+]
+
+const appDownloads: AppDownload[] = [
+  {
+    icon: Smartphone,
+    title: "AntHub Customer",
+    description: "For car owners tracking visits, vehicles, chat updates, approvals, and reminders.",
+    androidUrl: "https://play.google.com/store/apps/details?id=app.anthub.ca",
+  },
+  {
+    icon: MonitorSmartphone,
+    title: "AntHub Business",
+    description: "For shop owners, agents, and shop teams managing service requests, assignments, and customer updates.",
+    androidUrl: "https://play.google.com/store/apps/details?id=ca.anthub.business",
+  },
 ]
 
 const platformSignals: FeatureItem[] = [
@@ -380,16 +401,9 @@ export default function LandingPage() {
               </p>
 
               <div className="mt-8 grid gap-3 sm:grid-cols-2">
-                <AppCard
-                  icon={Smartphone}
-                  title="AntHub"
-                  description="For car owners tracking visits, vehicles, chat updates, approvals, and reminders."
-                />
-                <AppCard
-                  icon={MonitorSmartphone}
-                  title="AntHub Business"
-                  description="For shop teams managing service requests, assignments, mechanics, and customer updates."
-                />
+                {appDownloads.map((app) => (
+                  <AppCard key={app.title} app={app} />
+                ))}
               </div>
             </div>
 
@@ -666,14 +680,33 @@ function FeatureTile({ item, tone }: { item: FeatureItem; tone: "shop" | "neutra
   )
 }
 
-function AppCard({ icon: Icon, title, description }: { icon: LucideIcon; title: string; description: string }) {
+function AppCard({ app }: { app: AppDownload }) {
+  const Icon = app.icon
+
   return (
-    <div className="rounded-md border border-[#cfdcc9] bg-white p-5">
+    <div className="flex h-full flex-col rounded-md border border-[#cfdcc9] bg-white p-5">
       <span className="flex size-11 items-center justify-center rounded-md bg-[#e5f4dd] text-[#2e7d32]">
         <Icon className="size-5" />
       </span>
-      <h3 className="mt-5 text-xl font-semibold">{title}</h3>
-      <p className="mt-3 text-sm leading-6 text-[#52605a]">{description}</p>
+      <h3 className="mt-5 text-xl font-semibold">{app.title}</h3>
+      <p className="mt-3 text-sm leading-6 text-[#52605a]">{app.description}</p>
+      <div className="mt-auto grid gap-2 pt-5">
+        <Button asChild className="h-11 w-full justify-start bg-[#101820] text-white hover:bg-[#24322c]">
+          <a href={app.androidUrl} target="_blank" rel="noreferrer">
+            <Download className="size-4" />
+            Android on Google Play
+          </a>
+        </Button>
+        <Button
+          type="button"
+          variant="outline"
+          disabled
+          className="h-11 w-full cursor-not-allowed justify-start border-[#cfdcc9] bg-white text-[#66746d] hover:bg-white"
+        >
+          <Apple className="size-4" />
+          iOS coming soon
+        </Button>
+      </div>
     </div>
   )
 }

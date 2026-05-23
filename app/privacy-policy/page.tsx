@@ -1,10 +1,13 @@
-"use client"
-
 import Link from "next/link"
+import type { Metadata } from "next"
 import type { ReactNode } from "react"
 
-import { DocumentMetadata } from "@/components/document-metadata"
 import PrintButton from "@/components/ui/print-button"
+
+export const metadata: Metadata = {
+  title: "Privacy Policy | AntHub",
+  description: "How AntHub collects, uses, and protects information.",
+}
 
 const sections = [
   ["who", "Who We Are"],
@@ -20,8 +23,6 @@ const sections = [
 export default function PrivacyPolicyPage() {
   return (
     <main className="min-h-screen bg-[#f6f8f5] text-[#101820]">
-      <DocumentMetadata title="Privacy Policy | AntHub" description="How AntHub collects, uses, and protects information." />
-
       <section className="bg-[#071311] text-white">
         <div className="mx-auto max-w-4xl px-4 py-12 sm:px-6 lg:px-8">
           <Link href="/" className="text-sm font-medium text-[#b8ec58] hover:text-white">
