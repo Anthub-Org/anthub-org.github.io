@@ -1,7 +1,4 @@
-"use client"
-
-import { useState } from "react"
-import Link from "next/link"
+import type { Metadata } from "next"
 import type { LucideIcon } from "lucide-react"
 import {
   Apple,
@@ -10,7 +7,6 @@ import {
   BellRing,
   CalendarClock,
   Camera,
-  Car,
   CheckCircle2,
   ChevronRight,
   ClipboardCheck,
@@ -19,7 +15,6 @@ import {
   FileText,
   Handshake,
   History,
-  Menu,
   MessageCircle,
   MonitorSmartphone,
   QrCode,
@@ -29,11 +24,13 @@ import {
   UserRoundCheck,
   UsersRound,
   Wrench,
-  X,
 } from "lucide-react"
 
-import { DocumentMetadata } from "@/components/document-metadata"
-import { Button } from "@/components/ui/button"
+export const metadata: Metadata = {
+  title: "AntHub - Auto Service Customers Can Track and Trust",
+  description:
+    "AntHub connects auto shops and car owners through QR intake, appointment chat, mechanic photo updates, service approvals, vehicle history, and reminders.",
+}
 
 type NavItem = {
   label: string
@@ -53,6 +50,11 @@ type StepItem = {
 
 type AppDownload = FeatureItem & {
   androidUrl: string
+}
+
+type FooterLink = {
+  label: string
+  href: string
 }
 
 const navItems: NavItem[] = [
@@ -230,88 +232,50 @@ const faqs = [
 ]
 
 export default function LandingPage() {
-  const [mobileMenuOpen, setMobileMenuOpen] = useState(false)
-
-  const scrollToSection = (sectionId: string) => {
-    const element = document.getElementById(sectionId)
-    if (element) {
-      element.scrollIntoView({ behavior: "smooth" })
-      setMobileMenuOpen(false)
-    }
-  }
-
   return (
     <div className="min-h-screen bg-[#f6f8f5] text-[#101820]">
-      <DocumentMetadata
-        title="AntHub - Auto Service Customers Can Track and Trust"
-        description="AntHub connects auto shops and car owners through QR intake, appointment chat, mechanic photo updates, service approvals, vehicle history, and reminders."
-        generator="v0.app"
-      />
-
       <header className="sticky top-0 z-50 border-b border-white/10 bg-[#071311]/95 text-white backdrop-blur">
         <div className="mx-auto flex max-w-7xl items-center justify-between px-4 py-3 sm:px-6 lg:px-8">
-          <button
-            type="button"
-            onClick={() => scrollToSection("top")}
-            className="flex items-center gap-3"
-            aria-label="Go to top"
-          >
-            <span className="flex size-10 items-center justify-center rounded-md bg-[#8dce37] text-[#071311]">
-              <Car className="size-5" />
-            </span>
-            <span className="text-xl font-semibold tracking-normal">AntHub</span>
-          </button>
+          <a href="/" className="flex items-center gap-3" aria-label="AntHub home">
+            <img src="/anthub-logo.png" alt="AntHub" className="h-10 w-auto rounded-sm bg-white px-2 py-1" width={150} height={58} />
+          </a>
 
           <nav className="hidden items-center gap-1 md:flex">
             {navItems.map((item) => (
-              <button
+              <a
                 key={item.target}
-                type="button"
-                onClick={() => scrollToSection(item.target)}
+                href={`#${item.target}`}
                 className="rounded-md px-3 py-2 text-sm font-medium text-white/80 transition hover:bg-white/10 hover:text-white"
               >
                 {item.label}
-              </button>
+              </a>
             ))}
           </nav>
 
           <div className="hidden items-center gap-2 md:flex">
-            <Button
-              type="button"
-              onClick={() => scrollToSection("apps")}
-              className="h-10 bg-white text-[#071311] hover:bg-[#e8f4df]"
+            <a
+              href="#apps"
+              className="inline-flex h-10 items-center justify-center gap-2 rounded-md bg-white px-4 text-sm font-medium text-[#071311] transition-all hover:bg-[#e8f4df]"
             >
               View Apps
               <ArrowRight className="size-4" />
-            </Button>
+            </a>
           </div>
-
-          <button
-            type="button"
-            className="rounded-md p-2 text-white md:hidden"
-            onClick={() => setMobileMenuOpen((open) => !open)}
-            aria-label="Toggle navigation"
-          >
-            {mobileMenuOpen ? <X className="size-6" /> : <Menu className="size-6" />}
-          </button>
         </div>
 
-        {mobileMenuOpen && (
-          <nav className="border-t border-white/10 px-4 py-3 md:hidden">
-            <div className="mx-auto grid max-w-7xl gap-1">
-              {navItems.map((item) => (
-                <button
-                  key={item.target}
-                  type="button"
-                  onClick={() => scrollToSection(item.target)}
-                  className="rounded-md px-3 py-3 text-left text-sm font-medium text-white/80 hover:bg-white/10"
-                >
-                  {item.label}
-                </button>
-              ))}
-            </div>
-          </nav>
-        )}
+        <nav className="border-t border-white/10 px-4 py-3 md:hidden">
+          <div className="mx-auto flex max-w-7xl gap-1 overflow-x-auto">
+            {navItems.map((item) => (
+              <a
+                key={item.target}
+                href={`#${item.target}`}
+                className="shrink-0 rounded-md px-3 py-2 text-sm font-medium text-white/80 hover:bg-white/10"
+              >
+                {item.label}
+              </a>
+            ))}
+          </div>
+        </nav>
       </header>
 
       <main id="top">
@@ -337,22 +301,19 @@ export default function LandingPage() {
                 record - from QR intake to photo updates, approvals, pickup, and reminders.
               </p>
               <div className="mt-8 flex flex-col gap-3 sm:flex-row">
-                <Button
-                  type="button"
-                  onClick={() => scrollToSection("shops")}
-                  className="h-12 bg-[#8dce37] px-5 text-base font-semibold text-[#071311] hover:bg-[#b8ec58]"
+                <a
+                  href="#shops"
+                  className="inline-flex h-12 items-center justify-center gap-2 rounded-md bg-[#8dce37] px-5 text-base font-semibold text-[#071311] transition-all hover:bg-[#b8ec58]"
                 >
                   For shop teams
                   <ChevronRight className="size-4" />
-                </Button>
-                <Button
-                  type="button"
-                  variant="outline"
-                  onClick={() => scrollToSection("drivers")}
-                  className="h-12 border-white/30 bg-white/10 px-5 text-base font-semibold text-white hover:bg-white hover:text-[#071311]"
+                </a>
+                <a
+                  href="#drivers"
+                  className="inline-flex h-12 items-center justify-center gap-2 rounded-md border border-white/30 bg-white/10 px-5 text-base font-semibold text-white transition-all hover:bg-white hover:text-[#071311]"
                 >
                   For car owners
-                </Button>
+                </a>
               </div>
             </div>
 
@@ -568,21 +529,18 @@ export default function LandingPage() {
               </h2>
             </div>
             <div className="flex flex-col gap-3 sm:flex-row lg:justify-end">
-              <Button
-                type="button"
-                onClick={() => scrollToSection("shops")}
-                className="h-12 bg-[#8dce37] text-[#071311] hover:bg-[#b8ec58]"
+              <a
+                href="#shops"
+                className="inline-flex h-12 items-center justify-center rounded-md bg-[#8dce37] px-4 text-sm font-medium text-[#071311] transition-all hover:bg-[#b8ec58]"
               >
                 For shop teams
-              </Button>
-              <Button
-                type="button"
-                variant="outline"
-                onClick={() => scrollToSection("drivers")}
-                className="h-12 border-white/30 bg-transparent text-white hover:bg-white hover:text-[#101820]"
+              </a>
+              <a
+                href="#drivers"
+                className="inline-flex h-12 items-center justify-center rounded-md border border-white/30 bg-transparent px-4 text-sm font-medium text-white transition-all hover:bg-white hover:text-[#101820]"
               >
                 For car owners
-              </Button>
+              </a>
             </div>
           </div>
         </section>
@@ -592,18 +550,31 @@ export default function LandingPage() {
         <div className="mx-auto grid max-w-7xl gap-8 px-4 py-10 sm:px-6 md:grid-cols-[1.2fr_0.8fr_0.8fr_0.8fr] lg:px-8">
           <div>
             <div className="flex items-center gap-3">
-              <span className="flex size-10 items-center justify-center rounded-md bg-[#8dce37] text-[#071311]">
-                <Car className="size-5" />
-              </span>
-              <span className="text-xl font-semibold">AntHub</span>
+              <img src="/anthub-logo.png" alt="AntHub" className="h-10 w-auto" width={150} height={58} />
             </div>
             <p className="mt-4 max-w-sm leading-7 text-[#52605a]">
               Auto service that customers can track and shops can run with more clarity.
             </p>
           </div>
 
-          <FooterGroup title="Product" items={["QR intake", "Approvals", "Service history", "Shop operations"]} />
-          <FooterGroup title="Apps" items={["AntHub", "AntHub Business", "Admin workflows", "Agent support"]} />
+          <FooterGroup
+            title="Product"
+            items={[
+              { label: "QR intake", href: "#platform" },
+              { label: "Approvals", href: "#drivers" },
+              { label: "Service history", href: "#workflow" },
+              { label: "Shop operations", href: "#shops" },
+            ]}
+          />
+          <FooterGroup
+            title="Apps"
+            items={[
+              { label: "AntHub Customer", href: "#apps" },
+              { label: "AntHub Business", href: "#apps" },
+              { label: "Android downloads", href: "#apps" },
+              { label: "Service workflow", href: "#workflow" },
+            ]}
+          />
           <div>
             <h3 className="font-semibold">Company</h3>
             <ul className="mt-4 space-y-3 text-sm text-[#52605a]">
@@ -613,14 +584,14 @@ export default function LandingPage() {
                 </a>
               </li>
               <li>
-                <Link className="hover:text-[#101820]" href="/privacy-policy">
+                <a className="hover:text-[#101820]" href="/privacy-policy/">
                   Privacy Policy
-                </Link>
+                </a>
               </li>
               <li>
-                <Link className="hover:text-[#101820]" href="/terms">
+                <a className="hover:text-[#101820]" href="/terms/">
                   Terms & Conditions
-                </Link>
+                </a>
               </li>
             </ul>
           </div>
@@ -691,21 +662,22 @@ function AppCard({ app }: { app: AppDownload }) {
       <h3 className="mt-5 text-xl font-semibold">{app.title}</h3>
       <p className="mt-3 text-sm leading-6 text-[#52605a]">{app.description}</p>
       <div className="mt-auto grid gap-2 pt-5">
-        <Button asChild className="h-11 w-full justify-start bg-[#101820] text-white hover:bg-[#24322c]">
-          <a href={app.androidUrl} target="_blank" rel="noreferrer">
-            <Download className="size-4" />
-            Android on Google Play
-          </a>
-        </Button>
-        <Button
-          type="button"
-          variant="outline"
-          disabled
-          className="h-11 w-full cursor-not-allowed justify-start border-[#cfdcc9] bg-white text-[#66746d] hover:bg-white"
+        <a
+          href={app.androidUrl}
+          target="_blank"
+          rel="noreferrer"
+          className="inline-flex h-11 w-full items-center justify-start gap-2 rounded-md bg-[#101820] px-4 text-sm font-medium text-white transition-all hover:bg-[#24322c]"
+        >
+          <Download className="size-4" />
+          Android on Google Play
+        </a>
+        <span
+          aria-disabled="true"
+          className="inline-flex h-11 w-full cursor-not-allowed items-center justify-start gap-2 rounded-md border border-[#cfdcc9] bg-white px-4 text-sm font-medium text-[#66746d] opacity-50"
         >
           <Apple className="size-4" />
           iOS coming soon
-        </Button>
+        </span>
       </div>
     </div>
   )
@@ -723,13 +695,17 @@ function ProofPoint({ icon: Icon, title, text }: { icon: LucideIcon; title: stri
   )
 }
 
-function FooterGroup({ title, items }: { title: string; items: string[] }) {
+function FooterGroup({ title, items }: { title: string; items: FooterLink[] }) {
   return (
     <div>
       <h3 className="font-semibold">{title}</h3>
       <ul className="mt-4 space-y-3 text-sm text-[#52605a]">
         {items.map((item) => (
-          <li key={item}>{item}</li>
+          <li key={item.label}>
+            <a className="hover:text-[#101820]" href={item.href}>
+              {item.label}
+            </a>
+          </li>
         ))}
       </ul>
     </div>
