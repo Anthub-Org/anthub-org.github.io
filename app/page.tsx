@@ -4,6 +4,7 @@ import { useState } from "react"
 import { Button } from "@/components/ui/button"
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card"
 import { Badge } from "@/components/ui/badge"
+import { DocumentMetadata } from "@/components/document-metadata"
 import {
   Car,
   Search,
@@ -41,6 +42,10 @@ export default function LandingPage() {
 
   return (
     <div className="min-h-screen bg-background">
+      <DocumentMetadata
+        title="Anthub - Transform Your Automotive Experience"
+        description="Connect car owners with trusted mechanics. Book services, track progress, and manage your auto shop with our innovative mobile apps."
+      />
       {/* Header */}
       <header className="bg-primary text-primary-foreground sticky top-0 z-50 shadow-lg">
         <div className="container mx-auto px-4 py-4 flex items-center justify-between">
@@ -188,7 +193,7 @@ export default function LandingPage() {
                   <Button
                     size="lg"
                     className="bg-primary/90 hover:bg-primary text-white rounded-full p-6 shadow-lg backdrop-blur-sm hover:scale-110 transition-transform"
-                    onClick={() => console.log("[v0] Play demo video")}
+                    onClick={() => console.log("Play demo video")}
                   >
                     <Play className="h-10 w-10" />
                   </Button>
@@ -892,7 +897,7 @@ export default function LandingPage() {
           </div>
 
           <div className="border-t border-primary-foreground/20 mt-12 pt-8 text-center text-primary-foreground/80">
-            <p className="text-lg">&copy; 2025 Anthub. All rights reserved.</p>
+            <p className="text-lg">&copy; 2026 Anthub. All rights reserved.</p>
           </div>
         </div>
       </footer>

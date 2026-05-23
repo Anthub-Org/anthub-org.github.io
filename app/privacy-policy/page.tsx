@@ -1,21 +1,24 @@
-import type { Metadata } from "next";
-import PrintButton from "../../components/ui/print-button";
+"use client";
 
-export const metadata: Metadata = {
-  title: "Privacy Policy | Anthub",
-  description: "How Anthub collects, uses, and protects your data.",
-};
+import { useEffect, useState } from "react";
+import PrintButton from "../../components/ui/print-button";
+import { DocumentMetadata } from "../../components/document-metadata";
 
 export default function PrivacyPolicyPage() {
-  const today = new Date().toLocaleDateString();
+  const [today, setToday] = useState("");
+
+  useEffect(() => {
+    setToday(new Date().toLocaleDateString());
+  }, []);
 
   return (
     <main className="container mx-auto max-w-3xl px-4 py-12">
+      <DocumentMetadata title="Privacy Policy | Anthub" description="How Anthub collects, uses, and protects your data." />
       <header className="flex items-center justify-between gap-3 mb-6">
         <div>
           <h1 className="text-3xl font-bold">Privacy Policy</h1>
           <p className="text-sm text-muted-foreground">
-            Effective: <strong>15 August, 2025</strong> • Last Updated: <strong>{today}</strong>
+            Effective: <strong>15 August, 2026</strong> • Last Updated: <strong>{today}</strong>
           </p>
         </div>
         <PrintButton />
