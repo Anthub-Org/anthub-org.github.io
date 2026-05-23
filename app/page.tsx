@@ -237,7 +237,7 @@ export default function LandingPage() {
       <header className="sticky top-0 z-50 border-b border-white/10 bg-[#071311]/95 text-white backdrop-blur">
         <div className="mx-auto flex max-w-7xl items-center justify-between px-4 py-3 sm:px-6 lg:px-8">
           <a href="/" className="flex items-center gap-3" aria-label="AntHub home">
-            <img src="/anthub-logo.png" alt="AntHub" className="h-10 w-auto rounded-sm bg-white px-2 py-1" width={150} height={58} />
+            <img src="/anthub-logo-transparent.png" alt="AntHub" className="h-10 w-auto" width={150} height={58} />
           </a>
 
           <nav className="hidden items-center gap-1 md:flex">
@@ -550,7 +550,7 @@ export default function LandingPage() {
         <div className="mx-auto grid max-w-7xl gap-8 px-4 py-10 sm:px-6 md:grid-cols-[1.2fr_0.8fr_0.8fr_0.8fr] lg:px-8">
           <div>
             <div className="flex items-center gap-3">
-              <img src="/anthub-logo.png" alt="AntHub" className="h-10 w-auto" width={150} height={58} />
+              <img src="/anthub-logo-transparent.png" alt="AntHub" className="h-10 w-auto" width={150} height={58} />
             </div>
             <p className="mt-4 max-w-sm leading-7 text-[#52605a]">
               Auto service that customers can track and shops can run with more clarity.

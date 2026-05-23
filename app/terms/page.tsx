@@ -26,7 +26,7 @@ export default function TermsPage() {
       <section className="bg-[#071311] text-white">
         <div className="mx-auto max-w-4xl px-4 py-12 sm:px-6 lg:px-8">
           <a href="/" className="inline-flex items-center" aria-label="AntHub home">
-            <img src="/anthub-logo.png" alt="AntHub" className="h-10 w-auto rounded-sm bg-white px-2 py-1" width={150} height={58} />
+            <img src="/anthub-logo-transparent.png" alt="AntHub" className="h-10 w-auto" width={150} height={58} />
           </a>
           <div className="mt-8 flex flex-col gap-6 sm:flex-row sm:items-end sm:justify-between">
             <div>
