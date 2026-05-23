@@ -1,2 +1,3 @@
-:HL["/_next/static/chunks/0~0hqlue90qr1.css","style"]
-0:{"tree":{"name":"","param":null,"prefetchHints":16,"slots":{"children":{"name":"privacy-policy","param":null,"prefetchHints":0,"slots":{"children":{"name":"__PAGE__","param":null,"prefetchHints":0,"slots":null}}}}},"staleTime":300,"buildId":"7904xd05AXd7H1ypMxKoN"}
+:HL["/_next/static/chunks/0239krgr7au16.css","style"]
+:HL["/anthub-logo-transparent.png","image"]
+0:{"tree":{"name":"","param":null,"prefetchHints":16,"slots":{"children":{"name":"privacy-policy","param":null,"prefetchHints":0,"slots":{"children":{"name":"__PAGE__","param":null,"prefetchHints":0,"slots":null}}}}},"staleTime":300,"buildId":"rzZS9E_AXJJDVvvJtGAnr"}
