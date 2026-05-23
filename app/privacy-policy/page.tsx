@@ -1,124 +1,151 @@
-"use client";
+"use client"
 
-import { useEffect, useState } from "react";
-import PrintButton from "../../components/ui/print-button";
-import { DocumentMetadata } from "../../components/document-metadata";
+import Link from "next/link"
+import type { ReactNode } from "react"
+
+import { DocumentMetadata } from "@/components/document-metadata"
+import PrintButton from "@/components/ui/print-button"
+
+const sections = [
+  ["who", "Who We Are"],
+  ["collect", "Information We Collect"],
+  ["use", "How We Use Information"],
+  ["share", "Sharing"],
+  ["rights", "Your Rights"],
+  ["retention", "Retention"],
+  ["security", "Security"],
+  ["contact", "Contact"],
+]
 
 export default function PrivacyPolicyPage() {
-  const [today, setToday] = useState("");
-
-  useEffect(() => {
-    setToday(new Date().toLocaleDateString());
-  }, []);
-
   return (
-    <main className="container mx-auto max-w-3xl px-4 py-12">
-      <DocumentMetadata title="Privacy Policy | Anthub" description="How Anthub collects, uses, and protects your data." />
-      <header className="flex items-center justify-between gap-3 mb-6">
-        <div>
-          <h1 className="text-3xl font-bold">Privacy Policy</h1>
-          <p className="text-sm text-muted-foreground">
-            Effective: <strong>15 August, 2026</strong> • Last Updated: <strong>{today}</strong>
-          </p>
-        </div>
-        <PrintButton />
-      </header>
+    <main className="min-h-screen bg-[#f6f8f5] text-[#101820]">
+      <DocumentMetadata title="Privacy Policy | AntHub" description="How AntHub collects, uses, and protects information." />
 
-      <section className="border rounded-2xl p-5 mb-6">
-        <div className="inline-flex items-center gap-2 text-emerald-500 border border-emerald-700/40 rounded-full px-3 py-1 text-xs">
-          TL;DR
+      <section className="bg-[#071311] text-white">
+        <div className="mx-auto max-w-4xl px-4 py-12 sm:px-6 lg:px-8">
+          <Link href="/" className="text-sm font-medium text-[#b8ec58] hover:text-white">
+            Back to AntHub
+          </Link>
+          <div className="mt-8 flex flex-col gap-6 sm:flex-row sm:items-end sm:justify-between">
+            <div>
+              <p className="text-sm font-semibold uppercase tracking-[0.18em] text-[#b8ec58]">Legal</p>
+              <h1 className="mt-3 text-4xl font-semibold tracking-normal sm:text-5xl">Privacy Policy</h1>
+              <p className="mt-4 text-sm text-white/70">
+                Effective: <strong>May 23, 2026</strong> | Last updated: <strong>May 23, 2026</strong>
+              </p>
+            </div>
+            <PrintButton className="h-10 rounded-md border border-white/25 px-4 text-sm font-medium text-white hover:bg-white hover:text-[#071311]" />
+          </div>
         </div>
-        <p className="mt-3">
-          We only collect what we need to connect car owners with car shops: your name, address, mobile
-          number, and email. We <strong>do not sell</strong> your data. We use it only to operate and
-          improve our service.
-        </p>
       </section>
 
-      <nav className="flex flex-wrap gap-2 text-sm mb-6">
-        <a href="#who" className="border rounded-full px-3 py-1">Who We Are</a>
-        <a href="#collect" className="border rounded-full px-3 py-1">Information We Collect</a>
-        <a href="#use" className="border rounded-full px-3 py-1">How We Use Info</a>
-        <a href="#share" className="border rounded-full px-3 py-1">Sharing</a>
-        <a href="#rights" className="border rounded-full px-3 py-1">Your Rights (Canada)</a>
-        <a href="#retention" className="border rounded-full px-3 py-1">Data Retention</a>
-        <a href="#security" className="border rounded-full px-3 py-1">Security</a>
-        <a href="#changes" className="border rounded-full px-3 py-1">Changes</a>
-        <a href="#contact" className="border rounded-full px-3 py-1">Contact</a>
-      </nav>
-
-      <article className="prose prose-invert max-w-none">
-        <section id="who">
-          <h2>1. Who We Are</h2>
-          <p>
-            This policy applies to <strong>Anthub</strong> (“we,” “our,” or “us”), which connects car owners
-            with car shops in Canada.
+      <div className="mx-auto grid max-w-4xl gap-8 px-4 py-10 sm:px-6 lg:px-8">
+        <section className="rounded-md border border-[#dfe7dc] bg-white p-5">
+          <h2 className="text-lg font-semibold">Summary</h2>
+          <p className="mt-3 leading-7 text-[#52605a]">
+            AntHub helps car owners and auto shops manage service visits. We collect information needed to create
+            accounts, identify vehicles, support appointment and service workflows, communicate updates, and improve the
+            platform. We do not sell personal information.
           </p>
         </section>
 
-        <section id="collect">
-          <h2>2. Information We Collect</h2>
-          <ul>
-            <li><strong>Name</strong></li>
-            <li><strong>Shop address</strong> (for shop owners)</li>
-            <li><strong>Car owner address</strong> (for car owners)</li>
-            <li><strong>Mobile number</strong></li>
-            <li><strong>Email address</strong></li>
-          </ul>
-        </section>
+        <nav className="flex flex-wrap gap-2 text-sm">
+          {sections.map(([id, label]) => (
+            <a key={id} href={`#${id}`} className="rounded-md border border-[#cfdcc9] bg-white px-3 py-2 hover:border-[#8dce37]">
+              {label}
+            </a>
+          ))}
+        </nav>
 
-        <section id="use">
-          <h2>3. How We Use Your Information</h2>
-          <ul>
-            <li>Match car owners with car shops</li>
-            <li>Enable communication between parties</li>
-            <li>Provide customer support</li>
-            <li>Improve our services</li>
-            <li>Comply with legal obligations</li>
-          </ul>
-        </section>
+        <article className="space-y-8">
+          <LegalSection id="who" title="1. Who We Are">
+            <p>
+              This Privacy Policy applies to AntHub, including the AntHub customer app, AntHub Business app, public
+              website, and related administrative workflows.
+            </p>
+          </LegalSection>
 
-        <section id="share">
-          <h2>4. Sharing Your Information</h2>
-          <p>We do <strong>not</strong> sell or rent personal data. We share information only to:</p>
-          <ul>
-            <li>Connect you with another user for a requested service</li>
-            <li>Comply with legal requirements or lawful requests</li>
-          </ul>
-        </section>
+          <LegalSection id="collect" title="2. Information We Collect">
+            <p>Depending on how you use AntHub, we may collect:</p>
+            <ul>
+              <li>Account information such as name, email address, mobile number, and profile photo.</li>
+              <li>Shop information such as shop name, address, staff profile details, and service workflow data.</li>
+              <li>Vehicle information such as make, model, images, service history, and appointment records.</li>
+              <li>Service visit information such as requests, notes, status changes, mechanic updates, recommendations, and approvals.</li>
+              <li>Messages and media shared through appointment chat, including photos used to explain service work.</li>
+              <li>Technical information such as device data, log data, and usage activity needed to operate and secure the platform.</li>
+            </ul>
+          </LegalSection>
 
-        <section id="rights">
-          <h2>5. Your Rights (Canada)</h2>
-          <p>Under Canada’s <strong>PIPEDA</strong> and applicable provincial laws, you may:</p>
-          <ul>
-            <li>Access the personal data we hold about you</li>
-            <li>Request corrections</li>
-            <li>Withdraw consent for certain uses</li>
-            <li>Request deletion (subject to legal retention rules)</li>
-          </ul>
-          <p>Contact: <a href="mailto:support@anthub.ca">support@anthub.ca</a></p>
-        </section>
+          <LegalSection id="use" title="3. How We Use Information">
+            <p>We use information to:</p>
+            <ul>
+              <li>Create and manage customer, shop, staff, and agent accounts.</li>
+              <li>Connect car owners with shops and active service visits.</li>
+              <li>Support appointments, assignments, service requests, chat, photo updates, and approval workflows.</li>
+              <li>Maintain vehicle service history and reminder experiences.</li>
+              <li>Provide support, troubleshoot issues, protect accounts, and improve product reliability.</li>
+              <li>Comply with legal obligations and enforce platform policies.</li>
+            </ul>
+          </LegalSection>
 
-        <section id="retention">
-          <h2>6. Data Retention</h2>
-          <p>We keep your data only as long as needed for service provision, legal compliance, and legitimate business purposes.</p>
-        </section>
+          <LegalSection id="share" title="4. Sharing Information">
+            <p>
+              We do not sell personal information. We share information only when needed to operate AntHub, such as
+              showing service visit details to the relevant customer, shop, mechanic, or agent, or when required by law.
+            </p>
+          </LegalSection>
 
-        <section id="security">
-          <h2>7. Data Security</h2>
-          <p>We use administrative, technical, and physical safeguards to protect your information against unauthorized access, disclosure, alteration, or destruction.</p>
-        </section>
+          <LegalSection id="rights" title="5. Your Rights">
+            <p>
+              Subject to applicable Canadian privacy laws, you may request access to your personal information, ask us to
+              correct it, withdraw consent where applicable, or request deletion when retention is no longer required.
+            </p>
+          </LegalSection>
 
-        <section id="changes">
-          <h2>8. Changes to This Policy</h2>
-          <p>If we make significant changes, we’ll notify you in-app or by email before they take effect.</p>
-        </section>
+          <LegalSection id="retention" title="6. Data Retention">
+            <p>
+              We keep information only as long as reasonably needed for service delivery, account management, support,
+              security, legal compliance, and legitimate business purposes.
+            </p>
+          </LegalSection>
 
-        <section id="contact">
-          <h2>9. Contact Us</h2>
-          <p><strong>Email:</strong> <a href="mailto:support@anthub.ca">support@anthub.ca</a></p>
-        </section>
-      </article>
+          <LegalSection id="security" title="7. Security">
+            <p>
+              We use administrative, technical, and organizational safeguards designed to protect information from
+              unauthorized access, disclosure, alteration, or destruction. No online service can guarantee absolute
+              security.
+            </p>
+          </LegalSection>
+
+          <LegalSection id="changes" title="8. Changes to This Policy">
+            <p>
+              We may update this Privacy Policy as the platform changes. If changes are significant, we will provide
+              notice through the website, app, email, or another appropriate channel.
+            </p>
+          </LegalSection>
+
+          <LegalSection id="contact" title="9. Contact Us">
+            <p>
+              For privacy questions or requests, contact us at{" "}
+              <a className="font-medium text-[#2e7d32] underline-offset-4 hover:underline" href="mailto:support@anthub.ca">
+                support@anthub.ca
+              </a>
+              .
+            </p>
+          </LegalSection>
+        </article>
+      </div>
     </main>
-  );
+  )
+}
+
+function LegalSection({ id, title, children }: { id: string; title: string; children: ReactNode }) {
+  return (
+    <section id={id} className="rounded-md border border-[#dfe7dc] bg-white p-6">
+      <h2 className="text-2xl font-semibold">{title}</h2>
+      <div className="mt-4 space-y-4 leading-7 text-[#52605a] [&_li]:ml-5 [&_li]:list-disc">{children}</div>
+    </section>
+  )
 }
