@@ -564,6 +564,7 @@ export default function LandingPage() {
               { label: "Approvals", href: "#drivers" },
               { label: "Service history", href: "#workflow" },
               { label: "Shop operations", href: "#shops" },
+              { label: "Docs", href: "/docs/" },
             ]}
           />
           <FooterGroup
